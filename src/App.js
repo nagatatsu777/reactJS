@@ -26,21 +26,29 @@ const App = () => {
       setSelected(nAnec)
   }
   const voting = () =>{
-    let newArray = []
     let c = vote['most']
+    let i = 0
     const newVote = vote['arr'][selected]+1
-    for(let i = 0; i<vote['arr'].length;i++){
+    var newOne = vote['arr'].map((element)=>{
+      if(i ===  selected){
+        i=i+1
+        return newVote
+      }
+      i=i+1
+      return element;
+    })
+    /*for(let i = 0; i<vote['arr'].length;i++){
       if(selected===i){
         newArray.push(newVote)
         continue;
       }
       newArray.push(vote['arr'][i])
-    }
+    }*/
     if(vote['arr'][vote['most']]<newVote){
         c = selected
      }
     const newDict = {
-      'arr':newArray,
+      'arr':newOne,
       'most': c
     }
     setVote(newDict)
@@ -59,6 +67,7 @@ const App = () => {
       <br></br>
       Vote Number:{vote['arr'][vote['most']]}
     </div>
+    
   )
 }
 
